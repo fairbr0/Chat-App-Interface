@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AlertModule } from 'ngx-bootstrap';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { SharedService } from './services/shared.service';
+import { AuthService } from './services/auth.service';
 
 import { AppComponent } from './components/app.component';
 import { LoginComponent} from './components/login.component';
@@ -13,6 +15,7 @@ import { GroupService } from './services/groups.service';
 import { ChatWindowComponent } from './components/chat-window.component';
 import { ChatBrowserComponent } from './components/chat-browser.component';
 import { SettingsDropDown } from './components/settings-drop-down.component';
+import { ProtectedDirective } from './components/protected.directive';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { SettingsDropDown } from './components/settings-drop-down.component';
     LoginComponent,
     ChatBrowserComponent,
     ChatWindowComponent,
-    SettingsDropDown
+    SettingsDropDown,
+    ProtectedDirective
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,9 @@ import { SettingsDropDown } from './components/settings-drop-down.component';
     BsDropdownModule.forRoot()
   ],
   providers: [
-    GroupService
+    GroupService,
+    SharedService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

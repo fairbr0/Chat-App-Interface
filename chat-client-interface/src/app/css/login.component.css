@@ -1,0 +1,16 @@
+.title {
+  color:red;
+  font-family: 'Nunito', sans-serif;
+  font-weight: bold;
+}
+
+.register-area {
+  position: relative;
+  top:50%;
+  transform: translateY(-50%);
+}
+
+.verticalLine {
+  border-left: thick solid #ff0000;
+  height:
+}

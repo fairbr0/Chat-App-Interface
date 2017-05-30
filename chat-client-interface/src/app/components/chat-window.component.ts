@@ -2,6 +2,7 @@ import { Component, Input, ElementRef, ViewChild, EventEmitter, Output } from '@
 import { Group } from '../models/group';
 import { Message } from '../models/message';
 import { GroupService } from '../services/groups.service';
+import { AuthService } from '../services/auth.service';
 import { User } from '../models/user';
 import { USERS } from '../data/mock-users';
 
@@ -15,7 +16,6 @@ export class ChatWindowComponent {
   @Input() group : Group;
   @ViewChild('scrollMessages') private scrollContainer: ElementRef;
   @ViewChild('titleArea') private titleContainer: ElementRef;
-  self : User = USERS[0];
   dynamicHeight = 0;
   dynamicTextAreaWidth = 0;
   typedMessage : String = '';
@@ -25,15 +25,16 @@ export class ChatWindowComponent {
   @Output() onNewGroup = new EventEmitter<boolean>();
 
   constructor(
-    private groupService : GroupService
+    private groupService : GroupService,
+    private authService : AuthService
   ) {}
 
   isFromSelf(message: Message) {
-    return (message.from === this.self.id);
+    return (message.from === this.authService.getUserInfo().id);
   }
 
   getColor(message: Message) {
-    if (message.from == this.self.id) {
+    if (message.from == this.authService.getUserInfo().id) {
       return '#EEE'
     }
     return this.group.color;
@@ -101,14 +102,14 @@ export class ChatWindowComponent {
     if (this.typedMessage !== '') {
 
       var message : Message = {
-        from : this.self.id,
+        from : this.authService.getUserInfo().id,
         content : this.typedMessage
       }
 
       if (this.group.groupId == null) {
         this.group.messages = [];
         this.group.color = 'green';
-        this.group.users.unshift(this.self);
+        this.group.users.unshift(this.authService.getUserInfo());
       }
 
       this.typedMessage = '';

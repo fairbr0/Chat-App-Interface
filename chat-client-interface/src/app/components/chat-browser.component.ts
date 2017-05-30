@@ -4,6 +4,7 @@ import { GroupService } from '../services/groups.service';
 import { User } from '../models/user';
 import { USERS } from '../data/mock-users';
 import { SettingsDropDown } from './settings-drop-down.component';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'chat-browser',
@@ -17,12 +18,12 @@ export class ChatBrowserComponent{
   activeGroups : Group[];
   activeGroupsCopy : Group[];
   selectedGroup : Group = new Group;
-  self : User = USERS[0];
   dynamicWidth = 0;
   searchValue = '';
 
   constructor(
-    private groupService : GroupService
+    private groupService : GroupService,
+    private authService : AuthService
   ) {}
 
   processGroups(groups : Group[]) : void {
@@ -50,7 +51,7 @@ export class ChatBrowserComponent{
 
     for (var j = 0; j < users.length; j++) {
       var user = users[j];
-      if (user.id !== this.self.id) {
+      if (user.id !== this.authService.getUserInfo().id) {
         names.push(user.name);
       }
     }
