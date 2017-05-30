@@ -1,0 +1,164 @@
+.message {
+  width : 80%;
+  margin: 2%;
+  padding: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  min-height: 30px;
+  line-height: 30px;
+  border-radius: 15px;
+  color:white;
+}
+
+.message-self {
+  margin-left: 18%;
+  background-color: #EEE;
+  color:#333;
+}
+
+.message-area {
+  overflow-y: scroll;
+  width:100%;
+}
+
+.send-area {
+  height:50px;
+  width:100%;
+  border-top: 0.5px solid #EEE;
+  padding: 5px;
+}
+
+.text-area {
+  height:30px;
+  display: inline-block;
+  float:right;
+  padding-left: 5px;
+  padding-right: 5px;
+  position: relative;
+  top:50%;
+  transform: translateY(-50%);
+}
+
+.text-input-area {
+  width:100%;
+  rows:1;
+  height:30px;
+  border:none;
+}
+
+.text-input-area:focus {
+  border: none;
+  outline:none;
+}
+
+.button-area {
+  padding-left: 5px;
+  padding-right: 5px;
+  height:40px;
+  display: inline-block;
+  float: right;
+  width:70px;
+  position: relative;
+  top:50%;
+  transform: translateY(-50%);
+}
+
+.title-area {
+  min-height:50px;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  border-bottom: 0.5px solid #EEE;
+}
+
+.group-name{
+  margin-top: 8px;
+}
+
+.addRecipientsArea{
+  width:100%;
+}
+
+.recipientSearchMatches {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.recipientSearchBox {
+  width: auto;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 14px;
+}
+
+.addedRecipientRemove{
+  float:left;
+  display: inline-block;
+  background-color: red;
+  color:white;
+  padding:10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.addedRecipient {
+  font-weight: normal;
+  font-size: 15px;
+  float:left;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.addedRecipientName {
+  float:left;
+  display: inline-block;
+  background-color: red;
+  color:white;
+  padding:10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.addedRecipientsArea {
+  width:100px;
+  float:left;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.addRecipientsTitle {
+  width:50px;
+  margin-left:10px;
+  margin-right: 10px;
+  margin-top:12px;
+  font-size: 16px;
+  font-weight: 500;
+  float:left;
+  display: inline-block;
+}
+
+.recipientSearchMatch {
+  list-style-type: none;
+  background-color: #f8f8f8;
+  padding:5px;
+  width:200px;
+  height:40px;
+  margin-bottom:5px;
+}
+.recipientSearchMatch:hover {
+  list-style-type: none;
+  background-color: #eee;
+}
+
+.chat-container {
+  width:100%;
+  min-width: 300px;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}

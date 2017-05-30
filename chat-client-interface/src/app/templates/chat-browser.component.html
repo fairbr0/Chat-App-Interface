@@ -1,0 +1,53 @@
+<div class='main-container'>
+  <div class='left-side'>
+    <div class='title-area fluid-container'>
+      <div class='row'>
+        <div class="col-xs-3">
+          <setting-drop-down></setting-drop-down>
+          <!--<div class='dropdown'>
+            <div class='dropdown-toggle' aria-hidden="true" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+              <span class="glyphicon glyphicon-cog menu-button " ></span>
+            </div>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <li><a href="#">Action</a></li>
+            </ul>
+          </div>-->
+
+        </div>
+        <div class="col-xs-6">
+          <span style='strong'>PandaChat</span>
+        </div>
+        <div class='col-xs-3'>
+          <span class="glyphicon glyphicon-edit menu-button" aria-hidden="true" (click)='newMessage($event)'></span>
+        </div>
+      </div>
+
+    </div>
+    <div class="search-area">
+      <div class="search-bar">
+        <div class='search-glyph'>
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+        </div>
+        <div class='text-area'>
+          <input type='text' [(ngModel)]='searchValue' (keyup)='searchChats($event)' class='search-box' placeholder="Search Chats"/>
+        </div>
+      </div>
+    </div>
+    <div class='group-area'>
+      <ul class='chats-list'>
+
+        <li *ngFor='let group of activeGroups'
+          class='chats-list-element'
+          [class.chat-selected]='group === selectedGroup'
+          (click)='onSelect(group)'>
+          <div class="chats-list-element-inner">
+            {{group.name}}
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class='right-side' (window:resize)="setChatWidth($event)" [style.width.px]='dynamicWidth'>
+    <chat-window [group]='selectedGroup' (onNewGroup)='onNewGroup($event)'></chat-window>
+  </div>
+</div>

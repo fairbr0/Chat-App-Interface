@@ -1,0 +1,63 @@
+<div class='wrap'>
+  <div #titleArea class='title-area fluid-container'>
+    <div class='row'>
+      <div *ngIf='group.name' class='group-name'>
+        {{group.name}}
+      </div>
+      <div *ngIf='! group.name'>
+        <div class="addRecipientsArea">
+          <div class="addRecipientsTitle">
+            To:
+          </div>
+          <div class="addedRecipientsArea">
+            <div class="addedRecipients">
+              <div *ngFor='let user of group.users' class="addedRecipient">
+                <div >
+                  <div class='addedRecipientName'>
+                    {{user.name}}
+                  </div>
+                  <div class="addedRecipientRemove" (click)='removeRecipient(user)'>
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="recipientSearch">
+              <input type='text' class='recipientSearchBox' (keyup)='searchRecipients($event)' [(ngModel)]='searchValue' placeholder="Contact" />
+            </div>
+            <div class='recipientSearchMatchesArea'>
+              <ul class='recipientSearchMatches'>
+                <li *ngFor='let user of searchMatches' class='recipientSearchMatch' (click)='addRecipient(user)'>
+                  {{user.name}}
+                </li>
+              </ul>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div #scrollMessages class='message-area' [style.height.px]='dynamicHeight' (window:resize)='setMessageAreaHeight($event)'>
+    <div *ngIf='group'>
+      <ul style='padding:0px; list-style-type:none'>
+        <li *ngFor='let message of group.messages'
+          class='message'
+          [style.background-color]='getColor(message)'
+          [class.message-self]='isFromSelf(message)'>
+          {{message.content}}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class='send-area'>
+  <div class='button-area'>
+    <button type=button class="btn btn-danger" [disabled]='!group.users' (click)='sendMessage($event)'>Send</button>
+  </div>
+  <div class='text-area' [style.width.px]='dynamicTextAreaWidth' (window:resize)='setTextAreaWidth($event)'>
+    <textarea [(ngModel)]='typedMessage' (keyup.enter)='sendMessage($event)' id='new-message-input' class='text-input-area' placeholder="Write message..."></textarea>
+  </div>
+</div>
