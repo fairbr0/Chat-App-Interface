@@ -2,9 +2,8 @@ import { User } from './user';
 import { Message } from './message';
 
 export class Group {
-  users : User[];
-  messages : Message[];
-  groupId : String;
+  users : String[];
+  id : String;
   color: String;
   name: String;
 }

@@ -15,6 +15,7 @@ export class LoginComponent {
   newUsername : String;
   newPassword : String;
   confirmPassword : String;
+  private sub: any = null;
 
   constructor(
     private authService : AuthService,
@@ -23,12 +24,21 @@ export class LoginComponent {
       if (authService.isAuthenticated()) {
         this.router.navigate(['/chat']);
       }
+
+      this.sub = this.authService.subscribe((val) => {
+        if (val.authenticated) {
+          this.router.navigate(['/chat']);
+        }
+      })
     }
 
   tryLogin() : void {
-    var result = this.authService.doLogin(this.username, this.password);
-    if (result) {
-      this.router.navigate(['/chat']);
-    }
+    this.authService.doLogin(this.username, this.password);
+  }
+
+  trySignUp() : void {
+    if (this.newPassword === this.confirmPassword) {
+      this.authService.doSignUp(this.newUsername, this.newPassword)
+    } 
   }
 }

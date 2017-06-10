@@ -42,6 +42,8 @@ export class ChatWindowComponent {
 
   setMessageAreaHeight() {
     var remove = 100;
+
+
     remove += this.searchMatches.length * 45;
     if (this.searchMatches.length > 0) {
       remove -= 8;
@@ -61,6 +63,7 @@ export class ChatWindowComponent {
 
   setMatches(users : User[]) : void {
     this.searchMatches = users;
+    console.log(users);
     this.setMessageAreaHeight();
   }
 
